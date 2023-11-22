@@ -23,8 +23,8 @@ endif
 
 ifeq ($(CRYPTO), 1)
 	override OUTPUT = out/v$(VLEN)x$(XLEN)$(MODE)/crypto
-	override CONFIGS = configs/crypto
-	override MARCH = rv${XLEN}gcv_zvbb
+	override CONFIGS = crypto-configs
+	override MARCH = rv${XLEN}gcv_zvbb_zvknc_zvkng_zvksc_zvksg
 endif
 
 RISCV_PREFIX = riscv64-unknown-elf-

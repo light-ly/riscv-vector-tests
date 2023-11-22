@@ -54,7 +54,7 @@ type Insn struct {
 	Name     string     `toml:"name"`
 	Format   insnFormat `toml:"format"`
 	Tests    tests      `toml:"tests"`
-	Ext      extSet     `toml:"extention"`
+	Ext      extSet     `toml:"extension"`
 	Option   Option     `toml:"-"`
 	TestData *TestData
 }
