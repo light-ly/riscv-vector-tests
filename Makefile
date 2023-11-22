@@ -21,6 +21,12 @@ ifeq ($(XLEN), 32)
 MABI = ilp32f
 endif
 
+ifeq ($(CRYPTO), 1)
+	override OUTPUT = out/v$(VLEN)x$(XLEN)$(MODE)/crypto
+	override CONFIGS = configs/crypto
+	override MARCH = rv${XLEN}gcv_zvbb
+endif
+
 RISCV_PREFIX = riscv64-unknown-elf-
 RISCV_GCC = $(RISCV_PREFIX)gcc
 RISCV_GCC_OPTS = -static -mcmodel=medany -fvisibility=hidden -nostdlib -nostartfiles -DENTROPY=0xdeadbeef -DLFSR_BITS=9 -fno-tree-loop-distribute-patterns
