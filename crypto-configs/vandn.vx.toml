@@ -1,6 +1,6 @@
 name = "vandn.vx"
 format = "vd,vs2,rs1,vm"
-extension = ["zvbb", "zvknc", "zvkng", "zvksc", "zvkng"]
+extension = ["zvbb", "zvknc", "zvkng", "zvksc", "zvksg"]
 
 [tests]
 base = [

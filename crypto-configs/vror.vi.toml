@@ -1,6 +1,6 @@
 name = "vror.vi"
 format = "vd,vs2,uimm,vm"
-extension = ["zvbb", "zvknc", "zvkng", "zvksc", "zvkng"]
+extension = ["zvbb", "zvknc", "zvkng", "zvksc", "zvksg"]
 
 [tests]
 base = [
