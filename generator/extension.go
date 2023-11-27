@@ -1,5 +1,7 @@
 package generator
 
+import "strings"
+
 type extension string
 type extSet    []extension
 
@@ -19,4 +21,12 @@ func (i *Insn) isExtension(exts map[extension]struct{}) bool {
 		}
 	}
 	return false
+}
+
+func egs(i *Insn) int {
+	if strings.HasPrefix(i.Name, "vsm3") {
+		return 8
+	} else {
+		return 4
+	}
 }

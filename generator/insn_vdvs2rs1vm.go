@@ -13,6 +13,7 @@ func (i *Insn) genCodeVdVs2Rs1Vm(pos int) []string {
 	vs2Size := iff(vs2Widening, 2, 1)
 
 	sews := iff(vdWidening || vs2Widening, allSEWs[:len(allSEWs)-1], allSEWs)
+	sews = iff(i.isExtension(crypto) && strings.HasPrefix(i.Name, "vc"), []SEW{SEW(64)}, sews)
 	combinations := i.combinations(
 		iff(vdWidening || vs2Widening, wideningMULs, allLMULs),
 		sews,

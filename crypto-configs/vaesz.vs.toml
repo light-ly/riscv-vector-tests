@@ -1,0 +1,5 @@
+name = "vaesz.vs"
+format = "vd,vs2"
+extension = ["zvknc", "zvkng"]
+
+[tests]

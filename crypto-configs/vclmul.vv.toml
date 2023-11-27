@@ -1,4 +1,4 @@
-name = "vclmulh.vv"
+name = "vclmul.vv"
 format = "vd,vs2,vs1,vm"
 extension = ["zvknc", "zvksc"]
 

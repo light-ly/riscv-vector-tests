@@ -9,16 +9,27 @@ import (
 )
 
 func (i *Insn) genCodeVdVs2(pos int) []string {
-	s := regexp.MustCompile(`vmv(\d)r.v`)
-	nr, err := strconv.Atoi(s.FindStringSubmatch(i.Name)[1])
-	if err != nil {
-		log.Fatal("unreachable")
+	lmuls := iff(i.isExtension(crypto), cryptoLMULS, allLMULs)
+	sews  := iff(i.isExtension(crypto), []SEW{SEW(32)}, allSEWs)
+
+	if !i.isExtension(crypto) {
+		s := regexp.MustCompile(`vmv(\d)r.v`)
+		nr, err := strconv.Atoi(s.FindStringSubmatch(i.Name)[1])
+		if (err != nil) && !i.isExtension(crypto) {
+			log.Fatal("unreachable")
+		}
+		lmuls = []LMUL{LMUL(nr)}
 	}
 
-	combinations := i.combinations([]LMUL{LMUL(nr)}, allSEWs, []bool{false})
+	combinations := i.combinations(lmuls, sews, []bool{false})
 	res := make([]string, 0, len(combinations))
 
 	for _, c := range combinations[pos:] {
+		if i.isExtension(crypto) && (c.Vl % egs(i) != 0) {
+			res = append(res, "")
+			continue
+		}
+
 		builder := strings.Builder{}
 		builder.WriteString(c.comment())
 

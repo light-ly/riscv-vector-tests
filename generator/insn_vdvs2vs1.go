@@ -6,9 +6,20 @@ import (
 )
 
 func (i *Insn) genCodeVdVs2Vs1(pos int) []string {
-	combinations := i.combinations(allLMULs, allSEWs, []bool{false})
+	sha2 := i.isExtension(crypto) && strings.HasPrefix(i.Name, "vsha")
+
+	lmuls := iff(i.isExtension(crypto), cryptoLMULS, allLMULs)
+	sews  := iff(i.isExtension(crypto), []SEW{SEW(32)}, allSEWs)
+	sews  = iff(i.isExtension(crypto) && sha2, []SEW{SEW(32), SEW(64)}, sews)
+
+	combinations := i.combinations(lmuls, sews, []bool{false})
 	res := make([]string, 0, len(combinations))
 	for _, c := range combinations[pos:] {
+		if i.isExtension(crypto) && ((c.Vl % egs(i) != 0) || (c.Vl * int(i.Option.VLEN) < 4 * int(c.SEW))) {
+			res = append(res, "")
+			continue
+		}
+
 		builder := strings.Builder{}
 		builder.WriteString(c.comment())
 

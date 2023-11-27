@@ -1,0 +1,5 @@
+name = "vsm4r.vv"
+format = "vd,vs2"
+extension = ["zvksg", "zvksc"]
+
+[tests]

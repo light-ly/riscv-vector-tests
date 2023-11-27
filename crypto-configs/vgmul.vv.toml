@@ -1,0 +1,5 @@
+name = "vgmul.vv"
+format = "vd,vs2"
+extension = ["zvkng", "zvksg"]
+
+[tests]

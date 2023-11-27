@@ -30,6 +30,7 @@ func (s SEW) String() string {
 type LMUL float32
 
 var allLMULs = []LMUL{LMUL(1) / 8, LMUL(1) / 4, LMUL(1) / 2, 1, 2, 4, 8}
+var cryptoLMULS = []LMUL{1, 2, 4, 8}
 var wideningMULs = []LMUL{LMUL(1) / 8, LMUL(1) / 4, LMUL(1) / 2, 1, 2, 4}
 var validLMULs = map[LMUL]struct{}{
 	allLMULs[0]: {},
